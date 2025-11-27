@@ -1,74 +1,79 @@
-# MicrobiologyApp
+# MicroLogger App
 
-MicrobiologyApp is a lightweight, fast, and secure PHP/MySQL web application 
-designed for managing microbiological test logs within food laboratories 
-and quality assurance environments.
+MicroLogger is a lightweight, fast and secure PHP/MySQL web application  
+designed for managing microbiological test logs in food laboratories and  
+quality assurance environments.
 
-It offers structured data entry, audit logging, product lookup caching, 
-document generation, statistics dashboards, and a clean modern interface 
-optimized for daily use.
+It provides structured data entry, audit logging, product lookups,  
+document generation, statistics dashboards, and a clean modern interface  
+optimized for daily laboratory workflows.
 
-> **License Notice:**  
-> This project is released under a **proprietary license**.  
-> You are NOT permitted to use, modify, copy, distribute, or deploy this 
-> software without explicit written permission from the author.  
-> See the [LICENSE](./LICENSE) file for details.
+This project is part of my work as a **Food Technologist** combining applied  
+microbiology with **software development** to modernize internal QC processes.
+
+---
+
+## 🧩 What Problems Does It Solve?
+
+- Eliminates inconsistent Excel-based microbiology logs  
+- Improves traceability (full audit log with before/after values)  
+- Speeds up data entry with API product caching and quick lookup  
+- Generates clean PDF reports for samples, tables and product logs  
+- Provides statistics for trends, limits and product QC performance  
+- Centralizes user activity tracking (HACCP / ISO 22000 compliance)
 
 ---
 
 ## 🚀 Features
 
 ### ✔ Microbiology Logs  
-- Adds logs using informations like:
-   Table name, incubation profiles, sampling info  
-   Product, batch code, expiry date  
-   Enterobacteriaceae, TMC 30°C, Yeasts & Molds, Bacillus  
-   Multi-day evaluation fields (2nd/3rd/4th day)  
-   Comments, stress tests, observations
-- Uses the Incubation calendar & Adds microbial results to past logs 
-- PDF export for individual products or tables
+- Log creation with product, batch code, expiry date  
+- Multi-day evaluations (2nd/3rd/4th day)  
+- Enterobacteriaceae, TMC 30°C, Yeasts & Molds, Bacillus  
+- Stress tests, comments & observations  
+- Backdated result entry via incubation calendar  
+- PDF export for tables or individual product entries
 
 ### ✔ Authentication & Roles  
-- Secure login  
-- Password hashing (`password_hash`)  
-- User roles (`admin`, `user`)
-- User management page for admins
+- Secure login (password hashing & session handling)  
+- User management (admins only)  
+- Role-based actions (`admin`, `user`)
 
 ### ✔ Products Cache  
-- Stores product entries from external APIs  
-- Faster dropdown search  
-- Avoids repeated API calls  
-- Ideal for integration with ERP systems
+- Stores ERP/API product entries  
+- Enables instant product dropdown search  
+- Avoids constant external API requests  
+- Ideal for large product catalogs
 
 ### ✔ Audit Logging  
-- Tracks all insert, update and delete operations  
-- Saves old + new values in JSON  
-- Includes IP, timestamp, user agent  
-- Ensures traceability and compliance (HACCP / ISO 22000)
+- Tracks every insert, update and delete  
+- Saves old/new values as JSON  
+- Logs IP, timestamp and user agent  
+- Ensures traceability for audits (HACCP / ISO 22000)
 
 ### ✔ Statistics & Dashboard  
-- Product frequency charts  
-- Batch/date analysis  
-- Table-by-table breakdown
-- Incubation calendar 
-- Statistics and performance per product with microbial limits & thresholds
-- Statistics for user related activity
-- Optimized with additional SQL indexes
+- Product frequency analysis  
+- Batch/date breakdowns  
+- Table analytics  
+- User activity analytics  
+- Microbial limit checking  
+- SQL indexing for performance
 
 ### ✔ Modern UI  
-- Sidebar-based dashboard  
-- Custom CSS (animations, tables, buttons)  
-- Responsive layout  
-- Clean typography and color palette
+- Custom CSS (animations, tables, buttons, layout)  
+- Sidebar dashboard layout  
+- Responsive pages  
+- Clean typography and design system
 
 ---
 
-## 📦 Requirements
+## 🧰 Technology Stack
 
-- PHP 8.1+  
-- MySQL 8.0+  
-- Apache / Nginx  
-- Composer (if extending features)
+- **Backend:** PHP 8.1+  
+- **Database:** MySQL 8+  
+- **Frontend:** HTML/CSS (custom UI components)  
+- **Server:** Apache / Nginx  
+- **Extra:** API integrations, PDF generation
 
 ---
 
@@ -85,7 +90,10 @@ optimized for daily use.
    ```bash
    cp .env.example .env
    ```
-   Then edit .env with your database credentials.
+   Configure:
+      - DB credentials  
+      - APP_URL
+      - API endpoint for products (optional).
    
 3. Import the database:
 
@@ -93,31 +101,32 @@ optimized for daily use.
    SOURCE database/schema.sql;
    SOURCE database/add_indexes.sql;
 
-4. Point your web server (VirtualHost) to the project root.
+4. Configure your web server
+   Point your VirtualHost / Nginx site to the project root.
    
-5. Login as the admin user you created manually in the DB.
+5. Create admin user manually in the database
+   (Users table is included in schema.)
 
 
 ## 🗂 Project Structure
 
 ```bash
-  /actions
-  /config
-  /css
-  /database
-  /img
-  /logs
-  /pages
-  app.php
-  index.php
-  README.md
-  LICENSE
+   /actions        → Form handlers (create, update, export)
+   /config         → App config, environment loader, validation, audit
+   /css            → UI styling system (tables, forms, sidebar, animations)
+   /database       → schema.sql + indexing
+   /img            → icons, branding
+   /logs           → runtime logs (ignored, .gitkeep only)
+   /pages          → UI views (dashboard, logs, statistics, users)
+   index.php       → Entry point
+   app.php         → Core initialization
 ```
 
 🔒 License
 
-  This project is proprietary and all rights reserved.
-  Unauthorized use is strictly prohibited.
+  This project is released under a proprietary license.
+  You are NOT permitted to use, modify, copy, distribute, or deploy this
+  software without explicit written permission from the author.
   See the [LICENSE](./LICENSE) file.
 
 📬 Contact
