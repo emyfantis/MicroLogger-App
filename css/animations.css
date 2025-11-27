@@ -1,0 +1,184 @@
+/* =========================================
+   animations.css – Keyframes & Animated Variants
+   Purpose:
+   This file defines all global animations and micro-interactions used
+   across the UI (logo float, section icons, KPI glow, empty states).
+   Adds subtle motion to give the app a polished, modern feel while
+   keeping performance lightweight.
+   ========================================= */
+
+
+/* =========================================
+   Fade-In Animations
+   Used in page transitions, cards, sections.
+   Provides subtle vertical offset + fade.
+   ========================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sectionFadeIn {
+  0%   { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* =========================================
+   Sidebar Logo Micro-Animation
+   Adds floating motion and a soft pulse halo.
+   The halo is created via ::after pseudo-element.
+   ========================================= */
+.sidebar__logo-mark {
+  isolation: isolate;                 /* Ensures halo doesn't blend incorrectly */
+  animation: logoFloat 4s ease-in-out infinite;
+  position: relative;
+}
+
+.sidebar__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid rgba(191, 219, 254, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  animation: logoPulse 3.5s ease-out infinite;
+}
+
+/* Floating motion for the actual logo block */
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+/* Expanding ring effect behind the logo */
+@keyframes logoPulse {
+  0% {
+    transform: scale(0.88);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   Section Headings – Animated Icons
+   Applies floating motion to SVG icons and
+   a radiating ring via ::after.
+   ========================================= */
+.section-heading__icon--animated {
+  position: relative;
+  overflow: visible; /* allows halo to extend past boundaries */
+}
+
+.section-heading__icon--animated::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1px solid rgba(191, 219, 254, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  animation: iconRing 6s ease-out infinite;
+}
+
+.section-heading__icon--animated svg {
+  transform-origin: center;
+  animation: iconFloatSoft 5s ease-in-out infinite;
+}
+
+/* Soft vertical hover-like float */
+@keyframes iconFloatSoft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+/* Pulsing halo ring */
+@keyframes iconRing {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   KPI Cards – Radial Glow Effect
+   Subtle ambient animation that moves a soft
+   blue glow inside the card background.
+   ========================================= */
+.kpi-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(59, 130, 246, 0.18),
+    transparent 55%
+  );
+  opacity: 0;
+  pointer-events: none;
+  animation: kpiGlow 9s ease-in-out infinite;
+}
+
+@keyframes kpiGlow {
+  0%, 100% { opacity: 0; transform: translate3d(-10%, -10%, 0); }
+  35%      { opacity: 0.7; transform: translate3d(5%, 5%, 0); }
+  70%      { opacity: 0; transform: translate3d(18%, 18%, 0); }
+}
+
+
+/* =========================================
+   Empty State Icons – Gentle Motion
+   Adds floating motion and a ring pulse
+   for empty result screens.
+   ========================================= */
+.empty-state__icon::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  opacity: 0;
+  animation: emptyRing 5.5s ease-out infinite;
+}
+
+.empty-state__icon svg {
+  transform-origin: center;
+  animation: emptyFloat 4.8s ease-in-out infinite;
+}
+
+/* Float animation for SVG icons */
+@keyframes emptyFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+/* Expanding subtle halo ring */
+@keyframes emptyRing {
+  0% {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}

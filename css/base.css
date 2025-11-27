@@ -1,0 +1,130 @@
+/* =========================================
+   base.css – Reset, Variables, Layout Shell
+   Purpose:
+   This file defines:
+     - Global CSS reset (box model, margins, padding)
+     - Design tokens (colors, radii, shadows)
+     - Page-level layout: sidebar + main area
+     - Responsive breakpoints for tablet/mobile
+   ========================================= */
+
+
+/* =========================================
+   Global Reset
+   Ensures consistent box sizing and removes
+   default browser margins/padding.
+   ========================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-height document so the grid layout can stretch entire viewport */
+html,
+body {
+  height: 100%;
+}
+
+
+/* =========================================
+   CSS Variables (Design Tokens)
+   Defines the core color palette, text colors,
+   border colors, radii, and shadows used globally.
+   These allow consistent styling across the app.
+   ========================================= */
+:root {
+  --bg-page: #f3f4f6;     /* Light page background */
+  --bg-shell: #e5e7eb;     /* Subtle backdrop behind layout grid */
+  --bg-sidebar: #f9fafb;   /* Sidebar surface */
+  --bg-main: #ffffff;      /* Main content area */
+
+  --border-subtle: #e5e7eb; /* Soft gray border */
+  --accent: #2563eb;        /* Primary blue accent */
+  --accent-soft: rgba(37, 99, 235, 0.08); /* Very light accent background */
+
+  --text-main: #111827;     /* Primary text */
+  --text-muted: #6b7280;    /* Secondary text */
+  --text-strong: #0f172a;   /* Strong, high-contrast text */
+
+  --radius-lg: 14px;        /* Rounded corners for cards & components */
+  --radius-xl: 18px;        /* Extra rounded variant */
+  --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08); /* Soft, deep shadow */
+}
+
+
+/* =========================================
+   Body Styling – “Clinical” Background Theme
+   Creates a clean, medical-lab inspired surface
+   using two soft radial gradients.
+   ========================================= */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.08), transparent 55%),
+    var(--bg-page);
+}
+
+
+/* =========================================
+   Application Shell (Sidebar + Main Area)
+   Uses CSS Grid to create a two-column layout:
+     - Fixed-width sidebar (260px)
+     - Flexible main content panel
+   ========================================= */
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+  background: linear-gradient(145deg, rgba(249, 250, 251, 0.95), rgba(239, 246, 255, 0.98));
+  color: var(--text-main);
+}
+
+/* Main content panel is a vertical flex container */
+.main {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+  min-width: 0; /* Prevents overflow issues with flex children */
+}
+
+
+/* =========================================
+   Responsive Layout
+   Breakpoint: ≤ 1024px (tablets)
+   Sidebar becomes narrow; topbar gains shadow.
+   ========================================= */
+@media (max-width: 1024px) {
+  .app-shell {
+    grid-template-columns: 72px minmax(0, 1fr); /* Compact sidebar */
+  }
+
+  .topbar {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+}
+
+
+/* =========================================
+   Responsive Layout
+   Breakpoint: ≤ 640px (mobile)
+   Sidebar hidden for now.
+   Content padding adjusted for smaller screens.
+   ========================================= */
+@media (max-width: 640px) {
+  .app-shell {
+    grid-template-columns: 1fr; /* Sidebar removed from layout */
+  }
+
+  .sidebar {
+    display: none; /* Future: slide-in sidebar for mobile */
+  }
+
+  .content {
+    padding: 14px 14px 18px; /* Mobile-friendly spacing */
+  }
+}

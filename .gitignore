@@ -1,0 +1,13 @@
+# Environment files (contains passwords!)
+.env
+
+# Logs (may contain sensitive data)
+logs/
+*.log
+
+# Vendor/dependencies
+vendor/
+
+# OS files
+.DS_Store
+Thumbs.db

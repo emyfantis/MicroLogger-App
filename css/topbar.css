@@ -1,0 +1,111 @@
+/* =========================================
+   topbar.css – Topbar & User Block
+   Purpose:
+     - Defines the layout and styling of the application's top navigation bar
+     - Handles title/subtitle, right-side user info block and avatar
+     - Provides soft shadows, gradients and subtle separators to match the UI theme
+   ========================================= */
+
+
+/* =========================================
+   Topbar container
+   Uses a grid: left (title/subtitle) + right (user panel)
+   ========================================= */
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 22px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-main);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+
+/* =========================================
+   Title + subtitle
+   Responsive text size using clamp()
+   ========================================= */
+.topbar__title {
+  font-size: clamp(1rem, 1.2vw + 0.8rem, 1.3rem);
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.topbar__subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+
+/* =========================================
+   Right side container (user info block)
+   ========================================= */
+.topbar__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+
+/* =========================================
+   User block container
+   Soft gradient background + subtle border
+   ========================================= */
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px 4px 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(249, 250, 251, 0.96),
+    rgba(239, 246, 255, 0.96)
+  );
+  border: 1px solid #e5e7eb;
+}
+
+
+/* =========================================
+   Avatar (first letter of username)
+   Blue gradient pill with centered text
+   ========================================= */
+.topbar__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+
+/* =========================================
+   User information (username + timer)
+   ========================================= */
+.topbar__user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar__user-name {
+  font-size: 0.8rem;
+  color: var(--text-strong);
+}
+
+/* Email or session timer text */
+.topbar__user-email,
+.topbar__timer {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}

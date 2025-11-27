@@ -1,0 +1,501 @@
+/* =========================================
+   content.css – Content, Sections, Cards, Forms
+   Purpose:
+     - Defines the main page content container
+     - Styles section headers, cards, tables, and form elements
+     - Provides shared UI patterns across all pages (dashboard, logs, stats, etc.)
+   ========================================= */
+
+
+/* =========================================
+   Main content wrapper
+   Provides spacing and ensures content scrolls correctly.
+   ========================================= */
+.content {
+  flex: 1;
+  padding: 18px 22px 22px;
+  color: var(--text-main);
+  min-height: 0;
+}
+
+.content-section {
+  max-width: 100%;
+  width: 100%;
+  animation: sectionFadeIn 0.35s ease-out; /* Soft intro animation */
+}
+
+.content-section h2 {
+  font-size: 1.12rem;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-strong);
+}
+
+.content-section__subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  margin-bottom: 16px;
+}
+
+
+/* =========================================
+   Section Headers
+   Used at the top of each module (Dashboard, Create, Documents, etc.)
+   Icon + Title + Meta info
+   ========================================= */
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.section-heading__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.section-heading__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Blue glow/light source look */
+  background: radial-gradient(circle at 20% 0%, rgba(191, 219, 254,0.9), rgba(59,130,246,0.6));
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.35);
+}
+
+.section-heading__icon svg {
+  display: block;
+}
+
+.section-heading__meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* Icon color variants for different page types */
+.section-heading__icon--dashboard {
+  background: radial-gradient(circle at 20% 0%, rgba(191, 219, 254, 0.95), rgba(56,189,248,0.7));
+}
+.section-heading__icon--stats {
+  background: radial-gradient(circle at 20% 0%, rgba(209, 250, 229, 0.95), rgba(34,197,94,0.7));
+}
+.section-heading__icon--docs {
+  background: radial-gradient(circle at 20% 0%, rgba(254, 249, 195, 0.95), rgba(234, 179, 8,0.7));
+}
+
+
+/* =========================================
+   Cards (Panels)
+   Used everywhere: forms, dashboards, results, etc.
+   Shadows + subtle elevation effects for modern UI.
+   ========================================= */
+.card,
+.table-card {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  width: 100%;
+  max-width: 100%;
+
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
+    border-color 0.14s ease,
+    background 0.14s ease;
+}
+
+/* Hover elevation */
+.card:hover,
+.table-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  border-color: rgba(37, 99, 235, 0.16);
+}
+
+/* Static cards do NOT lift on hover */
+.card.card--static:hover,
+.table-card.table-card--static:hover {
+  transform: none;
+  box-shadow: var(--shadow-soft);
+  border-color: var(--border-subtle);
+}
+
+/* Table card: more rounded and compact padding */
+.table-card {
+  border-radius: var(--radius-xl);
+  padding: 12px 12px 10px;
+}
+
+.table-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  column-gap: 12px;
+}
+
+.table-card__title {
+  font-size: 0.9rem;
+  color: var(--text-strong);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-card__title .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #22c55e; /* Tiny live status indicator */
+}
+
+
+/* =========================================
+   Forms & Inputs
+   Grid layout for clean two-column forms.
+   ========================================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+
+/* =========================================
+   Input Fields
+   Subtle shadows + lifted focus state.
+   ========================================= */
+.form-input {
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  padding: 7px 10px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  outline: none;
+  transition:
+    box-shadow 0.14s ease,
+    border-color 0.14s ease,
+    transform 0.08s ease,
+    background 0.14s ease;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+.form-input:hover {
+  background: #f9fafb;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.75),
+    0 10px 26px rgba(15, 23, 42, 0.12);
+  transform: translateY(-1px);
+}
+
+.form-input--textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+
+/* =========================================
+   Product Wrapper (Dropdown + Free Text)
+   ========================================= */
+.form-product-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.form-product-wrapper .product-select,
+.form-product-wrapper .product-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.product-or {
+  font-size: 0.7rem;
+  align-self: center;
+  color: var(--text-muted);
+  padding-left: 2px;
+  margin: 2px 0 -2px 2px;
+}
+
+
+/* Product dropdown styling */
+select.product-select {
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+select.product-select optgroup {
+  font-weight: 600;
+  color: #1e3a8a;
+  background: rgba(191, 219, 254, 0.25);
+  padding: 4px 8px;
+  border-top: 1px solid rgba(147, 197, 253, 0.35);
+}
+
+select.product-select optgroup:first-child {
+  border-top: none;
+}
+
+select.product-select optgroup option {
+  padding: 4px 10px;
+  background: #ffffff;
+  font-weight: 400;
+  color: #111827;
+}
+
+select.product-select optgroup option:checked,
+select.product-select optgroup option:focus {
+  background: rgba(191, 219, 254, 0.45);
+  color: #1e3a8a;
+}
+
+select.product-select option {
+  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+}
+
+select.product-select option:last-child {
+  border-bottom: none;
+}
+
+.form-product-wrapper select.product-select {
+  font-size: 0.78rem;
+  padding: 4px 6px;
+}
+
+
+/* =========================================
+   Form Actions
+   Buttons at bottom of forms
+   ========================================= */
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+
+/* =========================================
+   Documents Filters & Info Blocks
+   Used in documents/data_show/pages
+   ========================================= */
+.doc-filters {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(249, 250, 251, 0.96);
+  border: 1px solid var(--border-subtle);
+}
+
+.doc-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.doc-results-title {
+  font-size: 0.9rem;
+  color: var(--text-strong);
+}
+
+.doc-results-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+
+/* =========================================
+   Alerts
+   Success / Warning / Error messages
+   ========================================= */
+.alert {
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  animation: fadeIn 0.4s ease;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+}
+
+.alert-success {
+  background: #ecfdf3;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  color: #92400e;
+}
+
+.alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+
+/* =========================================
+   Badges (small status pills)
+   ========================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge--ok {
+  background: #ecfdf3;
+  color: #166534;
+}
+
+.badge--warn {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.badge--error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+
+/* =========================================
+   KPI Cards (Dashboard Stats)
+   ========================================= */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.kpi-card {
+  padding: 10px 10px 9px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(239, 246, 255, 0.98)
+  );
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.kpi-card__value {
+  margin-top: 2px;
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.kpi-card__description {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.kpi-card--alert {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.kpi-card--alert .kpi-card__value {
+  color: #b91c1c;
+}
+
+
+/* =========================================
+   Empty State (no results)
+   Used on documents, statistics, dashboard.
+   ========================================= */
+.empty-state {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+}
+
+.empty-state__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 20% 0%, #bfdbfe, #60a5fa);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.25);
+}
+
+.empty-state__title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.empty-state__text {
+  font-size: 0.78rem;
+  color: #6b7280;
+}

@@ -1,0 +1,142 @@
+/* =========================================
+   buttons.css – Buttons & Variants
+   Purpose:
+     - Defines the base `.button` component
+     - Provides themed variants (primary, ghost, delete)
+     - Provides a small-size modifier and interaction states
+   ========================================= */
+
+
+/* =========================================
+   Base Button
+   Rounded, compact, flexible layout for icons + text.
+   Includes smoothing transitions on hover/active states.
+   ========================================= */
+.button {
+  border-radius: 999px; /* Fully pill-shaped button */
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  /* Inline-flex allows icon + label alignment */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  text-decoration: none;
+  background: transparent;
+  color: var(--text-main);
+
+  /* Smooth transitions for subtle interaction feedback */
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    transform 0.08s ease,
+    box-shadow 0.12s ease,
+    color 0.12s ease;
+}
+
+
+/* =========================================
+   Primary Button Variant
+   Rich blue gradient with soft shadow.
+   Intended for the main “call to action”.
+   ========================================= */
+.button--primary {
+  background-image: linear-gradient(
+    120deg,
+    #2563eb,   /* Deep blue */
+    #1d4ed8,   /* Slightly darker blue */
+    #0ea5e9    /* Cyan highlight */
+  );
+  background-size: 180% 180%; /* Enables subtle animated shift on hover */
+
+  color: #f9fafb;
+  border-color: rgba(37, 99, 235, 0.9);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.32);
+}
+
+.button--primary:hover {
+  transform: translateY(-1px); /* Slight lift */
+  background-position: 100% 0; /* Animated gradient movement */
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.3);
+}
+
+.button--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.25);
+}
+
+.button--primary:focus-visible {
+  outline: 2px solid #bfdbfe;
+  outline-offset: 2px;
+}
+
+
+/* =========================================
+   Ghost Button Variant
+   Minimal, light UI button for secondary actions.
+   Neutral background with soft borders.
+   ========================================= */
+.button--ghost {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(243, 244, 246, 0.96)
+  );
+  color: var(--text-main);
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.button--ghost:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+
+/* =========================================
+   Small Size Variant
+   Useful inside tables, toolbars, and compact UI areas.
+   ========================================= */
+.button--sm {
+  padding: 5px 10px;
+  font-size: 0.78rem;
+}
+
+
+/* =========================================
+   Delete / Destructive Action Button
+   Red theme with strong visual cues.
+   Good for “Remove row”, “Delete log”, etc.
+   ========================================= */
+.button--delete {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 8px; /* Less rounded than the other buttons */
+  background: #fef2f2; /* Light red background */
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  cursor: pointer;
+
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease,
+    transform 0.08s ease,
+    box-shadow 0.12s ease;
+}
+
+.button--delete:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.25);
+}
+
+.button--delete:active {
+  transform: translateY(0);
+}

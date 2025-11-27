@@ -1,0 +1,196 @@
+/* =========================================
+   tables.css – Tables & Responsive Controls
+   Purpose:
+     - Styles all data tables across the application
+     - Provides responsive font scaling, sticky headers,
+       alternating rows, focus effects and in-table form inputs
+   ========================================= */
+
+
+/* =========================================
+   Wrapper
+   Provides scroll for large tables + soft shadow container.
+   ========================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   Base table styling
+   Using fixed layout for predictable responsive behavior.
+   ========================================= */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(0.7rem, 0.8vw, 0.78rem);
+  table-layout: fixed;
+}
+
+
+/* =========================================
+   Table headers
+   Sticky top row + soft gradient and subtle borders.
+   ========================================= */
+.data-table thead th {
+  padding: clamp(2px, 0.45vw, 6px) clamp(4px, 0.8vw, 8px);
+  border-bottom: 1px solid #d1d5db;
+  border-right: 1px solid #e5e7eb;
+  text-align: center;
+  color: var(--text-strong);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom, #f9fafb, #edf2ff);
+  font-size: clamp(0.52rem, 0.75vw, 0.78rem);
+  line-height: 1.1;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.data-table thead th:last-child {
+  border-right: none;
+}
+
+
+/* =========================================
+   Table body cells
+   Subtle borders + consistent padding across screens.
+   ========================================= */
+.data-table tbody td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  vertical-align: middle;
+  font-size: clamp(0.52rem, 0.75vw, 0.78rem);
+  line-height: 1.2;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody td:last-child {
+  border-right: none;
+}
+
+
+/* =========================================
+   Alternating rows + hover behavior
+   Creates clear visual separation.
+   ========================================= */
+.data-table tbody tr:nth-child(2n) td {
+  background: rgba(249, 250, 251, 0.7);
+}
+
+.data-table tbody tr:hover td {
+  background: #f9fafb;
+}
+
+
+/* =========================================
+   Date input alignment inside table
+   ========================================= */
+.data-table tbody td input[type="date"] {
+  text-align: center;
+  font-size: inherit;
+}
+
+
+/* =========================================
+   Row index styling
+   ========================================= */
+.cell-index,
+.table-index {
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.table-index {
+  width: 50px;
+}
+
+
+/* =========================================
+   Inputs inside table
+   Uniform padding, border, focus effects.
+   ========================================= */
+.table-input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: #ffffff;
+  padding: 4px 6px;
+  font-size: 0.78rem;
+  color: var(--text-main);
+  outline: none;
+  transition:
+    box-shadow 0.14s ease,
+    border-color 0.14s ease,
+    transform 0.08s ease,
+    background 0.14s ease;
+}
+
+.table-input::placeholder {
+  color: #9ca3af;
+}
+
+.table-input:hover {
+  background: #f9fafb;
+}
+
+.table-input:focus {
+  border-color: var(--accent);
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.75),
+    0 10px 26px rgba(15, 23, 42, 0.12);
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   Responsive form controls inside table
+   Makes input/select/textarea scale smoothly.
+   ========================================= */
+.data-table input,
+.data-table select,
+.data-table textarea {
+  font-size: clamp(0.52rem, 0.75vw, 0.8rem);
+  padding: clamp(2px, 0.45vw, 4px) clamp(4px, 0.8vw, 8px);
+  line-height: 1.2;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.data-table input::placeholder,
+.data-table textarea::placeholder {
+  font-size: 0.95em;
+  color: #9ca3af;
+}
+
+.data-table .table-input,
+.data-table .product-select {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================
+   Alert cells (out-of-spec values)
+   Highlighted with soft red background + bold text.
+   ========================================= */
+.data-table tbody td.cell-alert {
+  background: #fef2f2;
+  color: #b91c1c;
+  font-weight: 600;
+}

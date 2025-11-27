@@ -1,0 +1,251 @@
+/* =========================================
+   sidebar.css – Sidebar & Workspace
+   Purpose:
+     - Defines the full vertical navigation column
+     - Styles logo, navigation links, workspace identity and logout button
+     - Provides hover/active animations and soft gradients
+   ========================================= */
+
+
+/* =========================================
+   Sidebar container
+   Full-height column with soft background gradients.
+   ========================================= */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 16px;
+  border-right: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.06), transparent 60%),
+    var(--bg-sidebar);
+}
+
+
+/* =========================================
+   Logo Area
+   Contains app icon + brand text.
+   Rounded pill background for visual grouping.
+   ========================================= */
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 16px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: #eef2ff;
+}
+
+/* Logo circular mark behind the small SVG */
+.sidebar__logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow:
+    0 6px 16px rgba(37, 99, 235, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.sidebar__logo-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-strong);
+}
+
+.sidebar__logo-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+
+/* =========================================
+   Navigation
+   Vertical list of sections + links.
+   Scrollable area for long menus.
+   ========================================= */
+.sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.sidebar__section + .sidebar__section {
+  margin-top: 18px;
+}
+
+.sidebar__section-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  padding: 0 8px;
+}
+
+/* Standard link style */
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 2px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  text-decoration: none;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease,
+    transform 0.08s ease;
+}
+
+/* Hover effect: soft lift + grey background */
+.sidebar__link:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* Active link: more pronounced highlight + shadow ring */
+.sidebar__link--active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+  box-shadow:
+    0 0 0 1px rgba(191, 219, 254, 0.9),
+    0 10px 26px rgba(15, 23, 42, 0.16);
+}
+
+/* Active link icon style */
+.sidebar__link--active .sidebar__icon {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* Icon circle on each nav item */
+.sidebar__icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+
+/* =========================================
+   Sidebar Footer / Workspace Identity
+   Shows current workspace/company metadata.
+   ========================================= */
+.sidebar__footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+/* Workspace pill showing initials + name */
+.sidebar__workspace {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor: default;
+  transition: background 0.12s ease;
+}
+
+.sidebar__workspace:hover {
+  background: #e5e7eb;
+}
+
+.sidebar__workspace-initials {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ecfdf5;
+}
+
+.sidebar__workspace-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__workspace-name {
+  font-size: 0.78rem;
+  color: var(--text-strong);
+}
+
+
+/* =========================================
+   Logout Button
+   Styled like a destructive action, fully visible
+   at the bottom of the sidebar.
+   ========================================= */
+.sidebar__logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  margin-top: 8px;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease,
+    border-color 0.12s ease,
+    transform 0.08s ease,
+    box-shadow 0.12s ease;
+}
+
+/* Hover: stronger red tone + lift */
+.sidebar__logout:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(248, 113, 113, 0.35);
+}
+
+/* Icon circle inside logout */
+.sidebar__logout-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  background: #fee2e2;
+}
+
+.sidebar__logout-text {
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
